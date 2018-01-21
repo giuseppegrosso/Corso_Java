@@ -1,4 +1,4 @@
-package it.pippo.www.test;
+package biz.aeffegroup.test;
 
 /**
  * classe di test prima invocazione.
