@@ -2,7 +2,7 @@ package biz.aeffegroup.model;
 
 public class Quadrato implements IFiguraGeometrica
 {
-	double lato;
+	private double lato;
 
 	public Quadrato(double lato)
 	{
