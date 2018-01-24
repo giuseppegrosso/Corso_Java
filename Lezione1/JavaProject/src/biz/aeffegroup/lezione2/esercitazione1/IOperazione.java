@@ -1,4 +1,4 @@
-package biz.aeffegroup.lezione2.model;
+package biz.aeffegroup.lezione2.esercitazione1;
 
 /**
  * Esercitazione lezione 2

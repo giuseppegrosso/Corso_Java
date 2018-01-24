@@ -1,4 +1,4 @@
-package biz.aeffegroup.lezione2.model;
+package biz.aeffegroup.lezione2.esercitazione1;
 
 /**
  * classe astratta per l'utility di stampa di messaggio e di intero del numero.
