@@ -7,6 +7,8 @@ public class StudenteTest
 	public static void main(String[] args)
 	{
 		Studente s = new Studente("Paolino", "Paperino", "10", "5A");
+		
+		s.nome = "Giuseppe";
 
 		System.out.println(s.toString());
 	}

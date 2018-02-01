@@ -19,6 +19,11 @@ public abstract class Stampa
 		print("", num);
 	}
 
+	public void print(String message)
+	{
+		print(message, 0);
+	}
+
 	/**
 	 * overloading del metodo di print con passaggio di un ulteriore parametro
 	 * 
@@ -27,7 +32,10 @@ public abstract class Stampa
 	 */
 	public void print(String messaggio, Number num)
 	{
-		// stampa a video del messaggio e del valore del numero
-		System.out.println(messaggio.concat(" ").concat("" + num));
+		if (num == null || num.intValue() == 0)
+			System.out.println(messaggio);
+		else
+			// stampa a video del messaggio e del valore del numero
+			System.out.println(messaggio.concat(" ").concat("" + num));
 	}
 }

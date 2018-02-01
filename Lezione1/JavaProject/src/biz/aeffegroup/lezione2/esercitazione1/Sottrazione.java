@@ -24,6 +24,13 @@ public class Sottrazione extends Stampa implements IOperazione
 	public void risultato(int minuendo, int sottraendo)
 	{
 		n = (minuendo - sottraendo);
-		print("risultato sottrazione:", n);
+		print("risultato sottrazione:");
+	}
+	
+	public void print(String messaggio, Number num)
+	{
+		super.print(messaggio, num);
+		System.out.println("override");
+		
 	}
 }

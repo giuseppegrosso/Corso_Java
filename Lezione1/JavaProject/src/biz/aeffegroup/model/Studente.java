@@ -3,7 +3,7 @@ package biz.aeffegroup.model;
 public class Studente
 {
 
-	private String nome;
+	public String nome;
 	private String cognome;
 	private String eta;
 	private String classe;
