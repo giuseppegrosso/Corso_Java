@@ -23,10 +23,11 @@ public class FileReadTest
 		String nome = input.nextLine();
 		System.out.println("* Lettura file");
 		System.out.println("***********************");
+		FileReader filein = null;
 		try
 		{
 			// apre il file in lettura
-			FileReader filein = new FileReader(nome);
+			filein = new FileReader(nome);
 
 			int next;
 			do
@@ -46,6 +47,19 @@ public class FileReadTest
 		} catch (IOException e)
 		{
 			System.out.println(e);
+			e.printStackTrace();
+		} finally
+		{
+			// questo pezzo viene sempre fatto.
+			System.out.println("questa viene sempre chiamata.");
+			if (filein != null)
+				try
+				{
+					filein.close();
+				} catch (IOException e)
+				{
+					e.printStackTrace();
+				}
 		}
 		System.out.println("***********************");
 		System.out.println("Fine lettura file \nBye bye!");

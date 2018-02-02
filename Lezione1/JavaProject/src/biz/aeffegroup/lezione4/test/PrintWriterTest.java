@@ -1,6 +1,6 @@
 package biz.aeffegroup.lezione4.test;
 
-import java.io.BufferedWriter;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -17,14 +17,16 @@ public class PrintWriterTest
 
 
 		// creo un oggetto FileWriter...
-		FileWriter fileout = new FileWriter(nomeOut);
-		// ... che incapsulo in un BufferedWriter...
-		BufferedWriter filebuf = new BufferedWriter(fileout);
-		// ... che incapsulo in un PrintWriter
-		PrintWriter printout = new PrintWriter(filebuf);
+		
+		File file = new File(nomeOut);
 
-		printout.println("Scrivo nel file copyprintwrite.txt:");
+		PrintWriter printout = new PrintWriter(file);
+		PrintWriter p2 = new PrintWriter(new FileWriter(nomeOut));
+		
 
+		printout.println("Scrivo nel file " + nomeOut);
+
+		printout.println("sono al corso e sto scrivendo un file a caso.");
 		printout.print("Un numero: ");
 		printout.println(Math.PI);
 

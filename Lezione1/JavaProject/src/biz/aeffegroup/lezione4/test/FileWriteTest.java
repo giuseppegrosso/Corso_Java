@@ -20,7 +20,7 @@ public class FileWriteTest
         System.out.print("Nome file (senza suffisso): ");
         Scanner input = new Scanner(System.in);
         String nome = input.nextLine();
-        System.out.println("* Lettura file");
+        System.out.println("* scrittura file");
         System.out.println("***********************");
         try {
             
@@ -35,6 +35,7 @@ public class FileWriteTest
                 // il ciclo scrive ogni carattere delle stringa nel file
                 for (int i = 0; i < str.length(); i++)
                     fileout.write(str.charAt(i));
+                
                 fileout.write('\n');
                 
             } while (str.length() > 0);

@@ -29,12 +29,12 @@ public class SommaInteriWithException
 		String line = null;
 
 		BufferedReader in = null;
+		int somma = 0;
 		try
 		{
 			in = new BufferedReader(new FileReader(inputFileName));
 
 			line = in.readLine();
-			int somma = 0;
 
 			while (line != null)
 			{
@@ -42,24 +42,29 @@ public class SommaInteriWithException
 				// intero viene lanciata un'eccezione
 				// NumberFormatException (catturata sotto con catch
 				// apposito)
-				int numero = Integer.parseInt(line);
+				int numero = 0;
+				try
+				{
+					numero = Integer.parseInt(line);
+				} catch (NumberFormatException e)
+				{
+					System.out.println(" linea non corretta: -> " + line + " <-");
+					System.out.println("comunque proseguo.");
+				}
 
 				somma += numero;
 				line = in.readLine();
 			}
-			System.out.println(" la somma e'  " + somma);
 
 		} catch (FileNotFoundException e)
 		{
 			System.out.println(inputFileName + " FileNotFound");
-		} catch (NumberFormatException e)
-		{
-			System.out.println(" linea non corretta: -> " + line + " <-");
 		} catch (IOException e)
 		{
 			System.out.println(" IOException  " + e);
 		} finally
 		{
+			System.out.println(" la somma e'  " + somma);
 			if (in != null)
 				try
 				{
