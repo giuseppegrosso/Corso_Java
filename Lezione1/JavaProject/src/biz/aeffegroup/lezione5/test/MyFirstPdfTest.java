@@ -4,8 +4,6 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.Calendar;
 
-import com.itextpdf.awt.geom.Dimension;
-import com.itextpdf.awt.geom.Rectangle;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.PageSize;
@@ -48,10 +46,7 @@ public class MyFirstPdfTest
 		// step 3
 		document.open();
 		// step 4
-		document.add(new Paragraph("Benvenuto al corso Aeffegroup di Java"));
-		document.add(new Paragraph("come vedi è possibile inserire una serie"));
-		document.add(new Paragraph("di righe all'interno di un documento pdf."));
-		document.add(new Paragraph("Tutto questo grazie alla libreria itext for java"));
+		document.add(new Paragraph("Benvenuto al corso Aeffegroup di Java come vedi è possibile inserire una serie di righe all'interno di un documento pdf. Tutto questo grazie alla libreria itext for java"));
 		// step 5
 		document.close();
 	}

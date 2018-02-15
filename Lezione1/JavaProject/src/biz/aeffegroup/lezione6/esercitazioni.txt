@@ -1,0 +1,21 @@
+Fare un programma java che prenda in ingresso una lista di file e li concateni in un unico file.
+Verificare inoltre che i dati in ingresso siano passati correttamente.
+
+Estendere la procedura progettando una interfaccia per 
+validare i dati in ingresso
+eseguire il lavoro
+conclusione del lavoro.
+
+
+
+Esternalizzare inoltre la funzione di concatenazione in una risorsa esterna.
+
+2. A partire dall'interfaccia progettata in precedenza si effettui il lavoro di lettura dei pdf in ingresso con inserimento a Piè di pagina e in ogni pagina del numero di pagina corrente es. Pag. 1/x - nome del file.pdf
+
+3. Si scriva una serie di utility per 1. scrivere su un file di log quanto fatto dalla procedura, funzioni di formattazione date, data + ora, numeri in Euro formato ###.###,## 
+
+Es
+		double amount = 200.0;
+		Locale locale = new Locale("it", "IT");
+		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
+		System.out.println(currencyFormatter.format(amount));
