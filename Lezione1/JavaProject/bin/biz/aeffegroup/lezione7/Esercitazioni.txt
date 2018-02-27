@@ -1,2 +1,10 @@
 Scrivi una classe java Astratta per la connessione, operazioni creazione database, creazione tabella, 
-inserimento, modifica, cancellazione.
+inserimento, modifica, cancellazione, lettura.
+
+help:
+prova a astrarti utilizzando come interfaccia la seguente:
+
+insert(String sql)
+delete(String sql)
+update(String sql)
+select(String sql)

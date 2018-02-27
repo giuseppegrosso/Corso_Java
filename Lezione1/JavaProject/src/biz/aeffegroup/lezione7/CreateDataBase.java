@@ -36,12 +36,23 @@ public class CreateDataBase
 	 */
 	private Connection connect()
 	{
+		return this.connect(false);
+	}
+
+	/**
+	 * Connect to the database
+	 *
+	 * @return the Connection object
+	 */
+	private Connection connect(boolean transaction)
+	{
 		// SQLite connection string
 		String url = DB_URL + filename;
 		Connection conn = null;
 		try
 		{
 			conn = DriverManager.getConnection(url);
+			conn.setAutoCommit(!transaction);
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
@@ -197,7 +208,7 @@ public class CreateDataBase
 	 */
 	public static void main(String[] args)
 	{
-		CreateDataBase c = new CreateDataBase("test.db");
+		CreateDataBase c = new CreateDataBase("testinaula.db");
 		c.create();
 		c.createNewTable("myTable");
 		List<MyTable> lt = new ArrayList<>();
