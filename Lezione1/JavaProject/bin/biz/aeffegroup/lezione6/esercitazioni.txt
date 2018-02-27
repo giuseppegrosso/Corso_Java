@@ -19,3 +19,7 @@ Es
 		Locale locale = new Locale("it", "IT");
 		NumberFormat currencyFormatter = NumberFormat.getCurrencyInstance(locale);
 		System.out.println(currencyFormatter.format(amount));
+
+
+
+Prossima esercitazione: scrittura su database: sqlite.

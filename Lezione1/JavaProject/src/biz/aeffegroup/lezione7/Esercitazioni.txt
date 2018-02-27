@@ -1,0 +1,2 @@
+Scrivi una classe java Astratta per la connessione, operazioni creazione database, creazione tabella, 
+inserimento, modifica, cancellazione.
