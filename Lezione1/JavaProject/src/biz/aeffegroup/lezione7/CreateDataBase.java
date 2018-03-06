@@ -24,64 +24,12 @@ public class CreateDataBase
 	private String filename;
 	private String tablename;
 
+	DataBaseHelper helper = null;
+
 	public CreateDataBase(String filename)
 	{
 		this.filename = filename;
-	}
-
-	/**
-	 * Connect to the database
-	 *
-	 * @return the Connection object
-	 */
-	private Connection connect()
-	{
-		return this.connect(false);
-	}
-
-	/**
-	 * Connect to the database
-	 *
-	 * @return the Connection object
-	 */
-	private Connection connect(boolean transaction)
-	{
-		// SQLite connection string
-		String url = DB_URL + filename;
-		Connection conn = null;
-		try
-		{
-			conn = DriverManager.getConnection(url);
-			conn.setAutoCommit(!transaction);
-		} catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
-		return conn;
-	}
-
-	/**
-	 * create database.
-	 *
-	 * @param fileName
-	 *            the database file name
-	 */
-	public void create()
-	{
-
-		try (Connection conn = this.connect())
-		{
-			if (conn != null)
-			{
-				DatabaseMetaData meta = conn.getMetaData();
-				System.out.println("The driver name is " + meta.getDriverName());
-				System.out.println("A new database has been created.");
-			}
-
-		} catch (SQLException e)
-		{
-			System.out.println(e.getMessage());
-		}
+		helper = new DataBaseHelper("c:/temp/lezione6/", "databaseHelper.db");
 	}
 
 	/**
@@ -97,10 +45,10 @@ public class CreateDataBase
 		String sql = "CREATE TABLE IF NOT EXISTS " + mytable + " (\n" + "	id integer PRIMARY KEY,\n"
 				+ "	name text NOT NULL,\n" + "	age integer\n" + ");";
 
-		try (Connection conn = this.connect(); Statement stmt = conn.createStatement())
+		try
 		{
 			// create a new table
-			stmt.execute(sql);
+			helper.executeStatement(sql);
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
@@ -127,13 +75,12 @@ public class CreateDataBase
 	public void insert(MyTable myTable)
 	{
 		// SQLite connection string
-		String sql = "INSERT INTO " + tablename + "(id,name,age) VALUES(?,?,?)";
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql))
+		String sql = String.format("INSERT INTO " + tablename + "(id, name, age) VALUES( %d, %s, %d)", myTable.getId(),
+				myTable.getName(), myTable.getAge());
+
+		try
 		{
-			pstmt.setInt(1, myTable.getId());
-			pstmt.setString(2, myTable.getName());
-			pstmt.setInt(3, myTable.getAge());
-			pstmt.executeUpdate();
+			helper.executeStatement(sql);
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
@@ -157,16 +104,12 @@ public class CreateDataBase
 	 */
 	public void delete(int id)
 	{
-		String sql = "DELETE FROM " + tablename + " WHERE id = ?";
+		String sql = String.format("DELETE FROM " + tablename + " WHERE id = %d", id);
 
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql))
+		try
 		{
 
-			// set the corresponding param
-			pstmt.setInt(1, id);
-			// execute the delete statement
-			pstmt.executeUpdate();
-
+			helper.executeStatement(sql);
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
