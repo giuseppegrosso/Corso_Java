@@ -29,7 +29,7 @@ public class CreateDataBase
 	public CreateDataBase(String filename)
 	{
 		this.filename = filename;
-		helper = new DataBaseHelper("c:/temp/lezione6/", "databaseHelper.db");
+		helper = new DataBaseHelper("c:/temp/lezione6/", filename);
 	}
 
 	/**
@@ -75,9 +75,10 @@ public class CreateDataBase
 	public void insert(MyTable myTable)
 	{
 		// SQLite connection string
-		String sql = String.format("INSERT INTO " + tablename + "(id, name, age) VALUES( %d, %s, %d)", myTable.getId(),
+		String sql = String.format("INSERT INTO " + tablename + "(id, name, age) VALUES( %d, '%s', %d)", myTable.getId(),
 				myTable.getName(), myTable.getAge());
 
+		System.out.println(sql);
 		try
 		{
 			helper.executeStatement(sql);
@@ -128,21 +129,16 @@ public class CreateDataBase
 	 */
 	public void update(Integer id, String name, Integer age)
 	{
-		String sql = "UPDATE " + tablename + " SET name = ? , " + "age = ? " + "WHERE id = ?";
-
-		try (Connection conn = this.connect(); PreparedStatement pstmt = conn.prepareStatement(sql))
+		String sql = String.format("UPDATE " + tablename + " SET name = '%s', age = %d WHERE id = %d", name, age, id);
+		try
 		{
 
-			// set the corresponding param
-			pstmt.setString(1, name);
-			pstmt.setInt(2, age);
-			pstmt.setInt(3, id);
-			// update
-			pstmt.executeUpdate();
+			helper.executeStatement(sql);
 		} catch (SQLException e)
 		{
 			System.out.println(e.getMessage());
 		}
+		System.out.println("update value " + id);
 	}
 
 	/**
@@ -152,18 +148,18 @@ public class CreateDataBase
 	public static void main(String[] args)
 	{
 		CreateDataBase c = new CreateDataBase("testinaula.db");
-		c.create();
+
 		c.createNewTable("myTable");
 		List<MyTable> lt = new ArrayList<>();
-		MyTable m = new MyTable(1, "Giuseppe Grosso", 20);
+		MyTable m = new MyTable(10, "Giuseppe Grosso", 20);
 
 		lt.add(m);
-		m = new MyTable(2, "Dario Lipucci", 20);
+		m = new MyTable(20, "Dario Lipucci", 20);
 		lt.add(m);
 		c.insert(lt);
 
 		c.delete(m);
-		c.update(1, "Grosso Giuseppe 2", 25);
+		c.update(10, "Grosso Giuseppe 2", 25);
 
 		c.insert(m);
 	}
