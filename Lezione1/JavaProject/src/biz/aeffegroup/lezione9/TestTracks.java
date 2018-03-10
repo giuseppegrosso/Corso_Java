@@ -10,12 +10,14 @@ public class TestTracks
 
 	public static void main(String[] args)
 	{
-		List<Tracks> tracks = new TracksManager<Tracks>().getList(Tracks.class);
-		
-		
+		List<Tracks> tracks = TracksManager.getInstance().getList(Tracks.class);
+
 		for (Tracks track : tracks)
 		{
 			System.out.println(track);
 		}
+
+//		tracks.stream().forEach(System.out::println);
+
 	}
 }

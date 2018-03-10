@@ -12,6 +12,22 @@ public class Tracks
 	String name;
 	@Column(name = "AlbumId")
 	Long albumId;
+	
+
+	@Column(name = "MediaTypeId")
+	Long mediaTypeId;
+	
+	@Column(name = "GenreId")
+	Long genreId;
+	@Column(name = "composer")
+	String composer;
+	
+	@Column(name = "milliseconds")
+	Long milliseconds;
+	@Column(name = "bytes")
+	Long bytes;
+	@Column(name = "unitPrice")
+	Double unitPrice;
 
 	// ritorno istanza del documento.
 	public static Tracks getInstance()
@@ -48,9 +64,71 @@ public class Tracks
 	{
 		this.albumId = albumId;
 	}
+	
+	public Long getMediaTypeId()
+	{
+		return mediaTypeId;
+	}
+
+	public void setMediaTypeId(Long mediaTypeId)
+	{
+		this.mediaTypeId = mediaTypeId;
+	}
+
+	public Long getGenreId()
+	{
+		return genreId;
+	}
+
+	public void setGenreId(Long genreId)
+	{
+		this.genreId = genreId;
+	}
+
+	public String getComposer()
+	{
+		return composer;
+	}
+
+	public void setComposer(String composer)
+	{
+		this.composer = composer;
+	}
+
+	public Long getMilliseconds()
+	{
+		return milliseconds;
+	}
+
+	public void setMilliseconds(Long milliseconds)
+	{
+		this.milliseconds = milliseconds;
+	}
+
+	public Long getBytes()
+	{
+		return bytes;
+	}
+
+	public void setBytes(Long bytes)
+	{
+		this.bytes = bytes;
+	}
+
+	public Double getUnitPrice()
+	{
+		return unitPrice;
+	}
+
+	public void setUnitPrice(Double unitPrice)
+	{
+		this.unitPrice = unitPrice;
+	}
+
 
 	public String toString()
 	{
-		return this.trackId + " " + this.albumId + " " + this.name;
+		return this.trackId + " " + this.albumId + " " + this.name +" " +mediaTypeId + " " + genreId;
 	}
+	
 }

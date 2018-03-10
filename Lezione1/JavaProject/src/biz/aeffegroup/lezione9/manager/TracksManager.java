@@ -19,7 +19,7 @@ public class TracksManager<T> extends AbstractManager
 
 	public static TracksManager<Tracks> getInstance()
 	{
-		return new TracksManager<Tracks>(null);
+		return new TracksManager<Tracks>();
 	}
 
 	public static TracksManager<Tracks> getInstance(ConnectionHelper helper)

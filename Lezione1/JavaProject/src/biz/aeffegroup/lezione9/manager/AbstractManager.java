@@ -31,7 +31,6 @@ public class AbstractManager
 	{
 		return this.getSingleObjectByQuery(String.format(SELECT_QUERY, "*", this.tableName + " obj") + " AND obj." + this.keyName + " = " + key, clazz);
 	}
-
 	@SuppressWarnings("rawtypes")
 	public <T> List<T> getList(Class clazz)
 	{
