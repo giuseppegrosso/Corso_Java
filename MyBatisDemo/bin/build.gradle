@@ -1,0 +1,11 @@
+apply plugin: 'java'
+apply plugin: 'eclipse'
+archivesBaseName = 'concretepage'
+version = '1' 
+repositories {
+    mavenCentral()
+}
+dependencies {
+    compile 'org.mybatis:mybatis:3.2.8'
+    compile 'mysql:mysql-connector-java:5.1.34'
+} 
