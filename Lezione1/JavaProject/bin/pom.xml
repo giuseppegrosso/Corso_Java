@@ -1,0 +1,107 @@
+<project xmlns='http://maven.apache.org/POM/4.0.0'
+02
+	 xmlns:xsi='http://www.w3.org/2001/XMLSchema-instance'
+03
+	 xsi:schemaLocation='http://maven.apache.org/POM/4.0.0
+04
+	 http://maven.apache.org/xsd/maven-4.0.0.xsd'>
+05
+	 <modelVersion>4.0.0</modelVersion>
+06
+	 
+07
+	 <groupId>com.sivalabs</groupId>
+08
+	 <artifactId>mybatis-demo</artifactId>
+09
+	 <version>0.0.1-SNAPSHOT</version>
+10
+	 <packaging>jar</packaging>
+11
+	 
+12
+	 <name>mybatis-demo</name>
+13
+	 <url>http://maven.apache.org</url>
+14
+	 
+15
+	 <properties>
+16
+	  <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+17
+	 </properties>
+18
+	 
+19
+	 <build>
+20
+	  <plugins>
+21
+	   <plugin>
+22
+	    <groupId>org.apache.maven.plugins</groupId>
+23
+	    <artifactId>maven-compiler-plugin</artifactId>
+24
+	    <version>2.3.2</version>
+25
+	    <configuration>
+26
+	     <source>1.6</source>
+27
+	     <target>1.6</target>
+28
+	     <encoding>${project.build.sourceEncoding}</encoding>
+29
+	    </configuration>
+30
+	   </plugin>
+31
+	  </plugins>
+32
+	 </build>
+33
+	 
+34
+	 <dependencies>
+35
+	  <dependency>
+36
+	   <groupId>junit</groupId>
+37
+	   <artifactId>junit</artifactId>
+38
+	   <version>4.10</version>
+39
+	   <scope>test</scope>
+40
+	  </dependency>
+41
+	 
+42
+	  <dependency>
+43
+	      <groupId>org.mybatis</groupId>
+44
+	      <artifactId>mybatis</artifactId>
+45
+	      <version>3.1.1</version>
+46
+	  </dependency>
+47
+	  <dependency>
+48
+	             <groupId>mysql</groupId>
+49
+	             <artifactId>mysql-connector-java</artifactId>
+50
+	             <version>5.1.21</version>
+51
+	             <scope>runtime</scope>
+52
+	         </dependency>
+53
+	 </dependencies>
+54
+	</project>
