@@ -1,9 +1,11 @@
 package biz.aeffegroup.jira.pojo;
 
+import java.util.List;
+
 public class Soluzioni
 {
 	String durata;
-	Veicolo veicolo;
+	List<Veicolo> veicolo;
 	String origine;
 	String destinazione;
 	String errore;

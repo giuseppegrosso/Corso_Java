@@ -31,6 +31,15 @@ public class AuthenticationTest
 {
 	public static final String BASE_URI = "https://api.github.com";
 	
+	public static final String JIRA_URI = "http://tch-jira01:8080";
+	
+	public static final String JIRA_AUTH = JIRA_URI.concat("/rest/auth/1/session");
+	
+	public static final String JIRA_FILTERS = JIRA_URI.concat("/rest/api/2/filter");
+	
+	public static final String JIRA_PROPERTIES = JIRA_URI.concat("/rest/api/2/application-properties");
+	
+	
 
 	static final String AUTHENTICATION_URI = BASE_URI.concat("");
 	static final String VIAGGIARETRENO_STAZIONI_URI = "http://www.viaggiatreno.it/viaggiatrenonew/resteasy/viaggiatreno/autocompletaStazione/";
@@ -48,11 +57,17 @@ public class AuthenticationTest
 		
 		AuthenticationTest st = new AuthenticationTest();
 		// st.testPostAuthentication();
+		 st.testJiraPostAuthentication();
+		 
+//		 st.callAPIJira(JIRA_FILTERS);
+		 st.callAPIJira(JIRA_PROPERTIES);
+		 
+		 
 
-		st.callAPIViaggiareTreno(VIAGGIARETRENO_STAZIONI_URI.concat("PRATO"));
-		st.callAPIViaggiareTreno(VIAGGIARETRENO_STAZIONI_URI.concat("FIRENZE"));
-
-		st.callAPIViaggiareTreno(VIAGGIARETRENO_PERCORSO_URI.concat("6426").concat("/").concat("6421").concat("/").concat(timestamp));
+//		st.callAPIViaggiareTreno(VIAGGIARETRENO_STAZIONI_URI.concat("PRATO"));
+//		st.callAPIViaggiareTreno(VIAGGIARETRENO_STAZIONI_URI.concat("FIRENZE"));
+//
+//		st.callAPIViaggiareTreno(VIAGGIARETRENO_PERCORSO_URI.concat("6426").concat("/").concat("6421").concat("/").concat(timestamp));
 
 	}
 
@@ -73,17 +88,42 @@ public class AuthenticationTest
 			input.close();
 		}
 
-		String json = postAuthentication(new User("giuseppe.ing.grosso@gmail.com", pwd));
+		String json = postAuthentication(new User("giuseppe.ing.grosso@gmail.com", pwd), BASE_URI);
+
+		System.out.println(json);
+
+	}
+	
+	
+	public void testJiraPostAuthentication()
+	{
+		Scanner input = new Scanner(System.in);
+
+		System.out.println("Inserisci la password: ");
+		String pwd = "";
+		try
+		{
+			pwd = input.nextLine();
+		} catch (InputMismatchException ime1)
+		{
+			throw new InputMismatchException(ime1.getMessage());
+		} finally
+		{
+			input.close();
+		}
+
+		String json = postAuthentication(new User("048108080", pwd), JIRA_AUTH);
 
 		System.out.println(json);
 
 	}
 
-	private void initClient()
+
+	private void initClient(String username, String pwd)
 	{
 		ClientConfig config = new ClientConfig();
 		config.register(JacksonJsonProvider.class);
-		HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic("giuseppe.ing.grosso@gmail.com", "");
+		HttpAuthenticationFeature feature = HttpAuthenticationFeature.basic(username, pwd);
 		client = ClientBuilder.newClient(config);
 		client.register(feature);
 
@@ -94,11 +134,28 @@ public class AuthenticationTest
 		 */
 
 	}
-
-	public String postAuthentication(User credential)
+	
+	public void callAPIJira(String url)
 	{
-		initClient();
-		Response response = client.target(AUTHENTICATION_URI).request(MediaType.APPLICATION_JSON).get();
+		System.out.println("url: " + url);
+//		initClient("048108080", "");
+		Response response = client.target(url).request().get();
+
+		String json = "";
+		System.out.println(response.getStatus());
+		if (response.getStatus() == OK_HTTP)
+		{
+			json = response.readEntity(String.class);
+		}
+		
+
+		System.out.println(json);
+	}
+
+	public String postAuthentication(User credential, String uri)
+	{
+		initClient(credential.getUsername(), credential.getPassword());
+		Response response = client.target(uri).request(MediaType.APPLICATION_JSON).get();
 
 		String json = "";
 		if (response.getStatus() == OK_HTTP)
@@ -111,7 +168,7 @@ public class AuthenticationTest
 	public void callAPIViaggiareTreno(String url)
 	{
 		System.out.println("url: " + url);
-		initClient();
+		initClient(null, null);
 		Response response = client.target(url).request().get();
 
 		String json = "";
@@ -125,7 +182,7 @@ public class AuthenticationTest
 
 	public <T> List<T> getListEntity(Class<T> clazz, String uri)
 	{
-		initClient();
+		initClient(null, null);
 		WebTarget target = client.target(uri);
 		Builder builder = target.request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
 				"Bearer " + token);
@@ -157,7 +214,7 @@ public class AuthenticationTest
 
 	public <T> T getEntity(Long id, Class<T> clazz, String uri)
 	{
-		initClient();
+		initClient(null, null);
 		WebTarget target = client.target(uri).path(String.valueOf(id));
 		Builder builder = target.request(MediaType.APPLICATION_JSON).header(HttpHeaders.AUTHORIZATION,
 				"Bearer " + token);
