@@ -1,0 +1,20 @@
+java: strumenti utilizzati gitHub/bitbucket per la condivisione dei progetti.
+
+1. Ambiente di programmazione: installazione ambiente di sviluppo
+
+a. installazione eclipse oxygen
+b. installazione java vm (jdk 8/9)
+c. installazione tomcat 9.
+
+
+2. differenza tra jdk e jre
+3. esempio di programma in java con metodo main
+   compilazione ed esecuzione in eclipse 
+   
+4. strutture base della programmazione in java
+   tipi di dati primitivi (int, long, double, char, boolean)
+   oggetti Integer, Long, Double, String, Boolean
+   
+5. Lettura dei dati in input
+   scrittura dei dati in output.
+   
